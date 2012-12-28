@@ -1,0 +1,103 @@
+
+.grid {
+  position: absolute;
+  overflow: hidden;
+}
+.label i {
+  margin-right: 3px;
+}
+
+.tabview {
+  position: absolute;
+  overflow: visible;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 27px;
+  white-space: nowrap;
+  font-size: 0.8em;
+  border-bottom: 1px solid #aaa;
+}
+.tabview > div {
+  color: #aaa;
+}
+.tabview > div.selected {
+  background-color: #aaa;
+  color: #111;
+}
+.focused > .tabview > div.selected{
+  background-color: #eee;
+  color: #000;
+}
+  
+.tabview > * {
+  display: inline-block;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 2px 5px;
+}
+.tabview span {
+  text-overflow: ellipsis;
+}
+.tabview span i {
+  margin-right: 3px;
+}
+.tabview > div > * {
+  display: inline-block;
+  height: inherit;
+}
+.tabview > div > *:first-child {
+  overflow: hidden;
+  margin-right: 2px;
+}
+
+.tabview > div > a {
+  color: #888;
+  font-size: 80%;
+  padding: 2px;
+}
+.tabview > div > a:hover {
+  color: #d44;
+}
+.tabview > div.selected * i, a.iconbutton > i {
+  color:inherit;
+}
+
+.switcher > * {
+  top: 28px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  overflow: hidden;
+}
+
+.splitview, .splitview > * {
+  position: absolute;
+  overflow: hidden;
+}
+.splitview > .slider {
+  background-color: rgba(255,255,255,0.5);
+  z-index: 10;
+}
+.splitview.horizontal > .slider {
+  width: 4px;
+  border-right: 1px solid rgba(0,0,0,0.5);
+  top: 0;
+  bottom: 0;
+}
+.splitview.vertical > .slider {
+  height: 4px;
+  border-bottom: 1px solid rgba(0,0,0,0.5);
+  left: 0;
+  right: 0;
+}
+.splitview.horizontal > .slider:hover {
+  cursor: ew-resize;
+}
+.splitview.vertical > .slider:hover {
+  cursor: ns-resize;
+}
+.splitview > .slider:hover {
+  background-color: #CF7EA9;
+}
