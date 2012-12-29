@@ -9,6 +9,10 @@ body {
   height: 100% !important;
   font-size: 20px;
 }
+.ace_editor {
+  font-size: 18px !important;
+  font-family: Ubuntu Mono, monospace;
+}
 
 ::-webkit-input-placeholder {
   color: #707070;
@@ -38,4 +42,26 @@ body {
   height:0;
   width:0;
   background-color:transparent;
+}
+i.icon-file {
+  color: #cda869
+}
+@-webkit-keyframes rotate {
+  from {-webkit-transform:rotate(0deg);}
+  to {-webkit-transform:rotate(360deg);}
+}
+@keyframes rotate {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
+}
+i.spin {
+  -webkit-animation: rotate 0.5s infinite linear;
+  animation: rotate 0.5s infinite linear;
+}
+
+[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 }

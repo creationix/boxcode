@@ -5,65 +5,30 @@ window.addEventListener("load", function () {
 
   var domBuilder = require('dombuilder');
   var Grid = require('grid');
+  var File = require('file');
 
   // Create our full-page grid.
   document.body.textContent = "";
   var body = window.body = new Grid(document.body);
 
-  function Logger() {
-    domBuilder(["$el", {onclick: function () {
-      this.textContent = "";
-    }}], this);
-  }
-
-  Logger.prototype.resize = function (width, height) {
-    this.el.style.width = width + "px";
-    this.el.style.height = height + "px";
-    this.log("resize", [width, height]);
-  };
-
-  Logger.prototype.onclose = function () {
-    this.log("onclose");
-    // return true;
-  };
-
-  Logger.prototype.onfocus = function () {
-    this.log("focus");
-  };
-
-  Logger.prototype.ondefocus = function () {
-    this.log("defocus");
-  };
-
-  Logger.prototype.onselect = function () {
-    this.log("select");
-  };
-
-  Logger.prototype.ondeselect = function () {
-    this.log("deselect");
-  };
-
-  Logger.prototype.log = function (name, args) {
-    args = (args || []).map(JSON.stringify).join(", ");
-    this.el.textContent = name + "(" + args + ")\n" + this.el.textContent;
-  };
-  
   var id = 1;
   var actions = {
-    create: function () {
-      var tab = new Logger(true);
-      tab.title = "Test Cell " + id++;
-      tab.icon = "icon-asterisk";
-      body.newTab(tab);
+    create: function (path) {
+      path = path || "file_" + (id++) + ".js";
+      var file = new File(path);
+      body.newTab(file);
+      file.load();
     },
     close: function () {
       body.closeTab();
     }
   };
-  
-  for (var i = 0; i < 5; i++) {
-    actions.create();
-  }
+
+  actions.create("index.js");
+  actions.create("index.html");
+  actions.create("lib/grid.js");
+  actions.create("css/grid.css");
+  actions.create("lib/file.js");
   
   document.addEventListener('keydown', function (evt) {
     var orientation;
@@ -76,10 +41,10 @@ window.addEventListener("load", function () {
       case 78: action = "create"; break;
       case 87: action = "close"; break;
     }
-    if (orientation) {
+    if (orientation && evt.shiftKey && evt.altKey) {
       evt.preventDefault();
       evt.stopPropagation();
-      if (evt.shiftKey) {
+      if (evt.crtlKey) {
         body.innerSplit(orientation);
       }
       else {
@@ -87,7 +52,7 @@ window.addEventListener("load", function () {
       }
       return false;
     }
-    if (action) {
+    if (action && evt.ctrlKey) {
       evt.preventDefault();
       evt.stopPropagation();
       actions[action]();
