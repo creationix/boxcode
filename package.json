@@ -1,0 +1,10 @@
+{
+  "name": "boxcode",
+  "version": "0.0.0",
+  "author": "Tim Caswell <tim@creationix.com>",
+  "dependencies": {
+    "send": "~0.1.0",
+    "ws": "~0.4.25",
+    "msgpack-js": "~0.1.1"
+  }
+}

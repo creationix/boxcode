@@ -14,13 +14,16 @@ window.addEventListener("load", function () {
   var id = 1;
   var actions = {
     create: function (path) {
-      path = path || "file_" + (id++) + ".js";
-      var file = new File(path);
+      var file = new File();
       body.newTab(file);
-      file.load();
+      if (path) file.load(path);
     },
     close: function () {
       body.closeTab();
+    },
+    save: function () {
+      var tab = body.focusedTab;
+      tab && tab.save && tab.save();
     }
   };
 
@@ -29,10 +32,12 @@ window.addEventListener("load", function () {
   actions.create("lib/grid.js");
   actions.create("css/grid.css");
   actions.create("lib/file.js");
-  
+
   document.addEventListener('keydown', function (evt) {
+    if (!(evt.ctrlKey || evt.altKey)) return;
     var orientation;
     var action;
+    var index;
     switch (evt.keyCode) {
       case 37: orientation = "left"; break;
       case 38: orientation = "top"; break;
@@ -40,6 +45,17 @@ window.addEventListener("load", function () {
       case 40: orientation = "bottom"; break;
       case 78: action = "create"; break;
       case 87: action = "close"; break;
+      case 83: action = "save"; break;
+      case 49: index = 0; break;
+      case 50: index = 1; break;
+      case 51: index = 2; break;
+      case 52: index = 3; break;
+      case 53: index = 4; break;
+      case 54: index = 5; break;
+      case 55: index = 6; break;
+      case 56: index = 7; break;
+      case 57: index = 8; break;
+      case 48: index = 9; break;
     }
     if (orientation && evt.shiftKey && evt.altKey) {
       evt.preventDefault();
@@ -58,6 +74,18 @@ window.addEventListener("load", function () {
       actions[action]();
       return false;
     }
+    if (index !== undefined && evt.altKey) {
+      var leaf = body.focusedLeaf;
+      if (leaf) {
+        var tab = leaf.tabs[index];
+        if (tab) {
+          evt.preventDefault();
+          evt.stopPropagation();
+          leaf.select(tab);
+          return false;
+        }
+      }
+    }
   }, true);
 
   // Wire up the resize events.
@@ -65,5 +93,5 @@ window.addEventListener("load", function () {
     body.resize(window.innerWidth, window.innerHeight);
   };
   window.onresize();
-  
+
 });
