@@ -1,11 +1,11 @@
-/*global require*/
+/*global load*/
 
 window.addEventListener("load", function () {
   "use strict";
 
-  var domBuilder = require('dombuilder');
-  var Grid = require('grid');
-  var File = require('file');
+  var domBuilder = load('dombuilder');
+  var Grid = load('grid');
+  var File = load('file');
 
   // Create our full-page grid.
   document.body.textContent = "";
@@ -94,4 +94,4 @@ window.addEventListener("load", function () {
   };
   window.onresize();
 
-});
+}, false);
