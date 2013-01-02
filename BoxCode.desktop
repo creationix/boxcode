@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=BoxCode
+Path=/home/tim/Code/boxcode
+Exec=./nw
+Icon=/home/tim/Code/boxcode/icon.png
+Type=Application
+Categories=Utility;
