@@ -20,18 +20,21 @@ window.addEventListener("load", function () {
     },
     close: function () {
       body.closeTab();
-    },
-    save: function () {
-      var tab = body.focusedTab;
-      tab && tab.save && tab.save();
     }
   };
+
+  // Wire up the resize events.
+  window.onresize = function () {
+    body.resize(window.innerWidth, window.innerHeight);
+  };
+  window.onresize();
 
   actions.create("index.js");
   actions.create("index.html");
   actions.create("lib/grid.js");
   actions.create("css/grid.css");
   actions.create("lib/file.js");
+  // body.innerSplit("right");
 
   document.addEventListener('keydown', function (evt) {
     if (!(evt.ctrlKey || evt.altKey)) return;
@@ -39,13 +42,6 @@ window.addEventListener("load", function () {
     var action;
     var index;
     switch (evt.keyCode) {
-      case 37: orientation = "left"; break;
-      case 38: orientation = "top"; break;
-      case 39: orientation = "right"; break;
-      case 40: orientation = "bottom"; break;
-      case 78: action = "create"; break;
-      case 87: action = "close"; break;
-      case 83: action = "save"; break;
       case 49: index = 0; break;
       case 50: index = 1; break;
       case 51: index = 2; break;
@@ -56,17 +52,8 @@ window.addEventListener("load", function () {
       case 56: index = 7; break;
       case 57: index = 8; break;
       case 48: index = 9; break;
-    }
-    if (orientation && evt.shiftKey && evt.altKey) {
-      evt.preventDefault();
-      evt.stopPropagation();
-      if (evt.crtlKey) {
-        body.innerSplit(orientation);
-      }
-      else {
-        body.outerSplit(orientation);
-      }
-      return false;
+      case 78: action = "create"; break;
+      case 87: action = "close"; break;
     }
     if (action && evt.ctrlKey) {
       evt.preventDefault();
@@ -88,10 +75,5 @@ window.addEventListener("load", function () {
     }
   }, true);
 
-  // Wire up the resize events.
-  window.onresize = function () {
-    body.resize(window.innerWidth, window.innerHeight);
-  };
-  window.onresize();
 
 }, false);

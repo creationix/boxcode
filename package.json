@@ -9,6 +9,6 @@
     "msgpack-js": "~0.1.1"
   },
   "window": {
-    "toolbar": false
+    "toolbar": true
   }
 }
