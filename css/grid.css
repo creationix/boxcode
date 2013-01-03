@@ -40,7 +40,8 @@
   text-overflow: ellipsis;
 }
 .tabview span i {
-  margin-right: 3px;
+  padding: 3px;
+  margin: -3px 0 -3px -3px;
 }
 .tabview > div > * {
   display: inline-block;
