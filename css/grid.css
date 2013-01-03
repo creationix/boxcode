@@ -55,8 +55,7 @@
 }
 
 .tab {
-  display: block;
-  float: left;
+  display: inline-block;
   overflow: hidden;
   cursor: pointer;
   padding: 2px 5px;
@@ -65,8 +64,8 @@
   vertical-align: baseline;
 }
 .tab > * {
-  display: block;
-  float: left;
+  vertical-align: top;
+  display: inline-block;
 }
 .tab span {
   overflow: hidden;
