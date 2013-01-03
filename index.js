@@ -6,22 +6,11 @@ window.addEventListener("load", function () {
   var domBuilder = load('dombuilder');
   var Grid = load('grid');
   var File = load('file');
+  var fs = load('fs');
 
   // Create our full-page grid.
   document.body.textContent = "";
   var body = window.body = new Grid(document.body);
-
-  var id = 1;
-  var actions = {
-    create: function (path) {
-      var file = new File();
-      body.newTab(file);
-      if (path) file.load(path);
-    },
-    close: function () {
-      body.closeTab();
-    }
-  };
 
   // Wire up the resize events.
   window.onresize = function () {
@@ -29,12 +18,21 @@ window.addEventListener("load", function () {
   };
   window.onresize();
 
-  actions.create("index.js");
-  actions.create("index.html");
-  actions.create("lib/grid.js");
-  actions.create("css/grid.css");
-  actions.create("lib/file.js");
-  // body.innerSplit("right");
+  var interesting = /\.(js|css|html)$/i;
+  function loaddir(dir) {
+    fs.readdir(dir, function (err, files) {
+      files.forEach(function (path) {
+        if (!interesting.test(path)) return;
+        // Randomly skip half of what's left
+        if (Math.random() > 0.5) return;
+        var file = new File();
+        body.newTab(file);
+        file.load(dir + "/" + path);
+      });
+    });
+  }
+  loaddir("lib");
+  loaddir(".");
 
   document.addEventListener('keydown', function (evt) {
     if (!(evt.ctrlKey || evt.altKey)) return;
