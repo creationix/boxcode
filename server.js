@@ -21,7 +21,8 @@ wsServer.on("connection", function (socket) {
     var message = msgpack.decode(data).map(function (arg) {
       if (typeof arg === "object" && typeof arg.$ === "number") {
         var args = [arg.$];
-        return function () {
+        return function (err) {
+          if (err) arguments[0].value = err.message;
           args.push.apply(args, arguments);
           socket.send(msgpack.encode(args), {binary:true});
         };
@@ -38,5 +39,6 @@ var actions = {
   readFile: fs.readFile,
   writeFile: fs.writeFile,
   readdir: fs.readdir,
+  unlink: fs.unlink,
   stat: fs.stat
 };
