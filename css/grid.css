@@ -42,50 +42,51 @@
   font-size: 0.8em;
   border-bottom: 1px solid #aaa;
 }
-.tabview > div {
+.tab {
   color: #aaa;
 }
-.tabview > div.selected {
+.tab.selected {
   background-color: #aaa;
   color: #111;
 }
-.focused > .tabview > div.selected{
+.focused .tab.selected{
   background-color: #eee;
   color: #000;
 }
-  
-.tabview > * {
-  display: inline-block;
+
+.tab {
+  display: block;
+  float: left;
   overflow: hidden;
   cursor: pointer;
   padding: 2px 5px;
+  height: 24px;
+  line-height: 24px;
+  vertical-align: baseline;
 }
-.tabview span {
+.tab > * {
+  display: block;
+  float: left;
+}
+.tab span {
+  overflow: hidden;
   text-overflow: ellipsis;
 }
-.tabview span i {
-  padding: 3px;
-  margin: -3px 0 -3px -3px;
+.tab i {
+  padding-left: 3px;
+  padding-right: 3px;
+  margin-left: -3px;
+  margin-right: 0;
 }
-.tabview > div > * {
-  display: inline-block;
-  height: inherit;
+.tab i.icon-remove {
+  margin-left: 0;
+  margin-right: -3px;
 }
-.tabview > div > *:first-child {
-  overflow: hidden;
-  margin-right: 2px;
-}
-
-.tabview > div > a {
-  color: #888;
-  font-size: 80%;
-  padding: 2px;
-}
-.tabview > div > a:hover {
+.tab i.icon-remove:hover {
   color: #d44;
 }
-.tabview > div.selected * i, a.iconbutton > i {
-  color:inherit;
+.tab.selected i {
+  color: inherit;
 }
 
 .switcher > * {
