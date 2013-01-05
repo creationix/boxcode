@@ -19,19 +19,27 @@ window.addEventListener("load", function () {
   window.onresize();
 
   var interesting = /\.(js|css|html)$/i;
+  var cutoff = Date.now() - 1000 * 60 * 60;
   function loaddir(dir) {
+
     fs.readdir(dir, function (err, files) {
       files.forEach(function (path) {
         if (!interesting.test(path)) return;
-        // Randomly skip half of what's left
-        if (Math.random() > 0.5) return;
-        var file = new File();
-        body.newTab(file);
-        file.load(dir + "/" + path);
+        path = dir + "/" + path;
+        // Load all files modified in the last hour
+        fs.stat(path, function (err, stat) {
+          if (err) throw err;
+          if (stat.mtime < cutoff) return;
+          console.log(stat);
+          var file = new File();
+          body.newTab(file);
+          file.load(path);
+        });
       });
     });
   }
   loaddir("lib");
+  loaddir("css");
   loaddir(".");
 
 }, false);

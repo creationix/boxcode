@@ -40,5 +40,13 @@ var actions = {
   writeFile: fs.writeFile,
   readdir: fs.readdir,
   unlink: fs.unlink,
-  stat: fs.stat
+  stat: function (path, callback) {
+    fs.stat(path, function (err, stat) {
+      if (err) return callback(err);
+      stat.atime = stat.atime.valueOf();
+      stat.mtime = stat.mtime.valueOf();
+      stat.ctime = stat.ctime.valueOf();
+      callback(null, stat);
+    });
+  }
 };
