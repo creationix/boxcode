@@ -40,6 +40,7 @@ var actions = {
   writeFile: fs.writeFile,
   readdir: fs.readdir,
   unlink: fs.unlink,
+  realpath: fs.realpath,
   stat: function (path, callback) {
     fs.stat(path, function (err, stat) {
       if (err) return callback(err);
