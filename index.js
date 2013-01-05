@@ -28,16 +28,21 @@ window.addEventListener("load", function () {
       fs.readdir(dir, function (err, files) {
         if (err) return callback(err);
         files.filter(isInteresting).forEach(function (file) {
+          file = dir + "/" + file;
+          var path, stat;
           left++;
-          fs.realpath(dir + "/" + file, function (err, path) {
+          fs.realpath(file, function (err, result) {
             if (err) return callback(err);
-            left++;
-            fs.stat(path, function (err, stat) {
-              if (err) return callback(err);
-              stat.path = path;
-              items.push(stat);
-              check();
-            });
+            path = result;
+            if (stat) stat.path = path;
+            check();
+          });
+          left++;
+          fs.stat(file, function (err, result) {
+            if (err) return callback(err);
+            stat = result;
+            if (path) stat.path = result;
+            items.push(stat);
             check();
           });
         });
