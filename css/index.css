@@ -43,20 +43,8 @@ body {
   width:0;
   background-color:transparent;
 }
-i.icon-file {
+i.icon-file-alt {
   color: #cda869
-}
-@-webkit-keyframes rotate {
-  from {-webkit-transform:rotate(0deg);}
-  to {-webkit-transform:rotate(360deg);}
-}
-@keyframes rotate {
-  from {transform:rotate(0deg);}
-  to {transform:rotate(360deg);}
-}
-i.spin {
-  -webkit-animation: rotate 0.5s infinite linear;
-  animation: rotate 0.5s infinite linear;
 }
 
 [draggable] {

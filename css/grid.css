@@ -63,15 +63,12 @@
   line-height: 24px;
   vertical-align: baseline;
 }
-.tab > * {
-  vertical-align: top;
-  display: inline-block;
-}
 .tab span {
   overflow: hidden;
   text-overflow: ellipsis;
 }
 .tab i {
+  font-size: 14px;
   padding-left: 3px;
   padding-right: 3px;
   margin-left: -3px;
