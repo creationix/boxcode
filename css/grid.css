@@ -42,8 +42,14 @@
   font-size: 0.8em;
   border-bottom: 1px solid #aaa;
 }
-.tab {
-  color: #aaa;
+.tabview .leafmenu {
+  position: absolute;
+  right: 0;
+  padding: 2px 5px;
+  height: 24px;
+  line-height: 24px;
+  vertical-align: baseline;
+  cursor: pointer;
 }
 .tab.selected {
   background-color: #aaa;
@@ -55,6 +61,7 @@
 }
 
 .tab {
+  color: #aaa;
   display: inline-block;
   overflow: hidden;
   cursor: pointer;
@@ -64,11 +71,14 @@
   vertical-align: baseline;
 }
 .tab span {
+  display: inline-block;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.tab i {
+.tabview i {
   font-size: 14px;
+}
+.tab i {
   padding-left: 3px;
   padding-right: 3px;
   margin-left: -3px;
