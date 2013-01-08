@@ -7,11 +7,7 @@ body {
   color: #eee;
   width: 100% !important;
   height: 100% !important;
-  font-size: 20px;
-}
-.ace_editor {
-  font-size: 18px !important;
-  font-family: Ubuntu Mono, monospace;
+  font-size: 16px;
 }
 
 ::-webkit-input-placeholder {

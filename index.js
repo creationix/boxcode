@@ -62,9 +62,9 @@ window.addEventListener("load", function () {
       return a.mtime - b.mtime;
     });
     items.slice(items.length - 5).forEach(function (item) {
-      var file = new File();
+      var file = new File(item.path);
       body.newTab(file);
-      file.load(item.path);
+      file.load();
     });
   });
 
